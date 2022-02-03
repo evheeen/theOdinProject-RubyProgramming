@@ -1,0 +1,14 @@
+# do not commit OSX Finder file
+.DS_Store
+
+# do not commit JetBrains IDE files
+.idea
+
+# do not commit VSCode configuration files
+.vscode
+
+# do not commit installed bundle
+.bundle
+
+# do not commit solved exercises :)
+/solved/*
