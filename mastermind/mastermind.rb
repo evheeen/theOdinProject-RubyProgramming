@@ -43,7 +43,7 @@ class Mastermind
     puts 'You have 12 turns to guess the secret code.'
     12.times do |turn|
       puts "Turn ##{turn + 1}. Type in four numbers (1-6) to guess code."
-      inputted_number = get_inputted_number.split('')
+      inputted_number = get_inputted_number.chars
 
       existent_matches, complete_matches = found_matches(inputted_number.clone)
       show_matches(existent_matches, complete_matches)
@@ -51,7 +51,7 @@ class Mastermind
       return turn if solved?(inputted_number)
     end
 
-    return false
+    false
   end
 
   def maker_game_party
@@ -86,7 +86,7 @@ class Mastermind
       used_combinations.push([existent_matches_number.clone, complete_matches, existent_matches])
     end
 
-    return false
+    false
   end
 
   # Solve functions
@@ -108,11 +108,11 @@ class Mastermind
   # Breaker game over message
   def breacker_game_over(game_result)
     if game_result
-      puts "\nThe Secret code was #{@secret_code.join()}"
+      puts "\nThe Secret code was #{@secret_code.join}"
       puts "You won, #{game_result + 1} turns were enough for you.\n\n"
     else
       puts "\nGame over. You didn't guess the secret code in 12 turns."
-      puts "The Secret code was #{@secret_code.join()}\n\n"
+      puts "The Secret code was #{@secret_code.join}\n\n"
     end
 
     launch
@@ -120,11 +120,11 @@ class Mastermind
 
   def maker_game_over(game_result)
     if game_result
-      puts "\nThe Secret code was #{@secret_code.join()}"
+      puts "\nThe Secret code was #{@secret_code.join}"
       puts "Computer won, #{game_result + 1} turns were enough for him.\n\n"
     else
       puts "\nGame over. Computer didn't guess the secret code in 12 turns."
-      puts "The Secret code was #{@secret_code.join()}\n\n"
+      puts "The Secret code was #{@secret_code.join}\n\n"
     end
 
     launch
@@ -146,7 +146,7 @@ class Mastermind
   def set_secret_code
     puts 'Set the secret code'
     code = gets.chomp.strip
-    return @secret_code = code.split('') if code.match(/^[1-6]{4}$/)
+    return @secret_code = code.chars if code.match(/^[1-6]{4}$/)
 
     puts 'Input 4 digits between 1-6.'
     set_secret_code
@@ -168,7 +168,7 @@ class Mastermind
   def found_existent_matches(inputted_number, code = nil)
     secret_code = code.clone || @secret_code.clone
     matches = 0
-    
+
     secret_code.each_with_index do |number, index|
       if number == inputted_number[index]
         inputted_number[index] = '-'
