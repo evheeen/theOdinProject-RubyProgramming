@@ -24,3 +24,24 @@ end
 
 fibs(100)
 fibs_rec(100)
+
+def merge_sort(to_sort)
+  return to_sort if to_sort.length < 2
+
+  mid = to_sort.length / 2
+  left = merge_sort(to_sort[0...mid])
+  right = merge_sort(to_sort[mid..])
+
+  merge(left, right)
+end
+
+def merge(left, right, sorted = [])
+  until left.empty? || right.empty?
+    left[0] < right[0] ? sorted.append(left.shift) : sorted.append(right.shift)
+  end
+
+  sorted + left + right
+end
+
+to_sort = 20.times.map { rand(100) }
+merge_sort(to_sort)
