@@ -153,5 +153,4 @@ class TicTacToe
   end
 end
 
-TicTacToe.new.launch
-
+# TicTacToe.new.launch
