@@ -13,7 +13,7 @@ class TicTacToe
       show_board
       puts "Player turn with symbol #{player}"
       puts 'Enter cell number(1-9):'
-      cell = gets.chomp.to_i
+      cell = get_cell
       mark_cell(cell, player)
 
       if board_filled?
@@ -67,7 +67,7 @@ class TicTacToe
       @board[row][column] = player
     else
       puts 'Cell is not empty, choose another cell'
-      cell = gets.chomp.to_i
+      cell = get_cell
       mark_cell(cell, player)
     end
   end
@@ -135,6 +135,17 @@ class TicTacToe
     end
 
     true
+  end
+
+  def get_cell
+    cell = gets.chomp.gsub(/[^1-9]/, '')
+
+    if cell == ''
+      puts 'Invalid input. Enter number in range 1-9.'
+      return get_column
+    end
+
+    cell.to_i
   end
 
   def show_board

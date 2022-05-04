@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../tic_tac_toe'
-
-require 'stringio'
+require_relative '../lib/tic_tac_toe'
 
 describe TicTacToe do
-  subject(:game) do
-    described_class.new
-  end
+  subject(:game) { described_class.new }
 
   context '#create_board' do
     it 'creates empty board 3x3' do
