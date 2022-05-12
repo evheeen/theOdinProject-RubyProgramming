@@ -3,9 +3,9 @@
 require_relative 'piece'
 
 class Knight < Piece
-  def initialize(board)
-    super(board)
-    @symbol = 'K'
+  def initialize(board, data)
+    super(board, data)
+    @symbol = '♞'
   end
 
   def possible_moves(board)
