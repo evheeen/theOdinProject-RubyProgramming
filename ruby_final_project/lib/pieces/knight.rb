@@ -16,8 +16,9 @@ class Knight < Piece
       column = move[1] + @position[1]
 
       next unless (0..7).include?(row) && (0..7).include?(column)
+      next if board.table[row][column]
 
-      possibilities.append([row, column]) 
+      possibilities.append([row, column])
     end
 
     possibilities

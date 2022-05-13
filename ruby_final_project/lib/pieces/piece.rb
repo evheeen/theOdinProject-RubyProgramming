@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class Piece
-  attr_reader :symbol, :color, :position
+  attr_reader :symbol, :color, :position, :current_moves
 
   def initialize(board, data)
     board.add_observer(self)
     @position = data[:position]
     @color = data[:color]
     @symbol = nil
+    @current_moves = []
+    @moved = false
   end
 
   def possible_moves(board, table = board.table)
@@ -21,20 +23,21 @@ class Piece
         break if table[row][column]
 
         possibilities.append([row, column])
-        row    += 1
-        column += 1
+        row    += move[0]
+        column += move[1]
       end
     end
 
     possibilities
   end
 
-  def update
-    
+  def update(board)
+    update_moves(board)
   end
 
   def change_position(row, column)
     @position = [row, column]
+    @moved = true
   end
 
   def white?
@@ -43,7 +46,7 @@ class Piece
 
   private
 
-  def method_name
-    
+  def update_moves(board)
+    @current_moves = possible_moves(board)
   end
 end
