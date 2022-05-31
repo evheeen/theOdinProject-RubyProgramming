@@ -6,6 +6,6 @@ describe Knight do
   subject(:knight) { described_class.new }
 
   it '' do
-    
+
   end
 end
