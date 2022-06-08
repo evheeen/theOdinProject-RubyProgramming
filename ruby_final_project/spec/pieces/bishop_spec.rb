@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/pieces/piece'
-require_relative '../../lib/pieces/knight'
+require_relative '../../lib/pieces/bishop'
 require_relative '../../lib/board'
 
-describe Knight do
+describe Bishop do
   let(:board) { Board.new }
   let(:black) { instance_double(Piece, color: :black) }
   let(:white) { instance_double(Piece, color: :white) }
 
   context '#possible_moves' do
-    subject(:knight) { described_class.new(board, { position: [2, 2], color: :white }) }
+    subject(:bishop) { described_class.new(board, { position: [2, 2], color: :white }) }
 
     context 'if board empty' do
       it 'has moves' do
-        expect(subject.possible_moves(board)).to eq([[4, 3], [3, 4], [4, 1], [3, 0], [0, 3], [1, 4], [0, 1], [1, 0]])
+        expect(subject.possible_moves(board)).to eq([[3, 1], [4, 0], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [1, 1], [0, 0], [1, 3], [0, 4]])
       end
     end
 
@@ -58,7 +58,7 @@ describe Knight do
   end
 
   context '#possible_captures' do
-    subject(:knight) { described_class.new(board, { position: [2, 2], color: :white }) }
+    subject(:subject) { described_class.new(board, { position: [2, 2], color: :white }) }
 
     context 'if board empty' do
       it 'has not captures' do
@@ -81,7 +81,7 @@ describe Knight do
       it 'has captures' do
         allow(board).to receive(:table).and_return(table)
 
-        expect(subject.possible_captures(board)).to eq([[4, 3], [3, 4], [4, 1], [3, 0], [0, 3], [1, 4], [0, 1], [1, 0]])
+        expect(subject.possible_captures(board)).to eq([[3, 1], [3, 3], [1, 1], [1, 3]])
       end
     end
 
@@ -119,7 +119,7 @@ describe Knight do
       it 'has not captures' do
         allow(board).to receive(:table).and_return(table)
 
-        expect(subject.possible_captures(board)).to eq([[4, 3], [4, 1], [3, 0], [1, 0]])
+        expect(subject.possible_captures(board)).to eq([[3, 1], [3, 3], [1, 1]])
       end
     end
   end

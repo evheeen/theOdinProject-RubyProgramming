@@ -81,7 +81,14 @@ class Board
   def check?(color)
     king = color == :white ? @white_king : @black_king
 
-    table.flatten.compact.each { |piece| return true if piece.current_captures.include?(king.position) }
+    print table.flatten.compact, "\n"
+    table.flatten.compact.each do |piece|
+      next if piece.color != color
+
+      print "captures", piece.current_captures, "\n"
+
+      return true if piece.current_captures.include?(king.position)
+    end
 
     false
   end
